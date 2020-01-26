@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div>
+	<ul id='number'></ul>
+
+	<script>
+		  //список из одномерного массива
+
+	 	 function generateList(array){
+
+	 	 //console.log(arguments)
+	 	
+	 	 	let $number = document.getElementById('number');
+
+	 	 //console.log($number)
+
+	 	  	$number.innerHTML = array.reduce(function(res,i){
+
+	 	 	 	return res += `<li> ${i} </li>`; 
+	 		
+
+	 	 	},'  '); // пустая строка !!!
+
+	 	   //return $number.innerHTML
+	 	 	}
+	 
+	 	 const arr = [1,2,3,4,5];
+
+	 	 console.log(generateList(arr));
+
+	 
+	 </script> 
+		<script>
+				//многомерный массив 
+
+	       	let array = [1,2,[12,13,14],3];
+
+	    	 const generateList1 = function foo (array){
+		      		let $list_item = document.createElement('ul');
+
+		      		for(let i of array) {
+		        		let $newItem = document.createElement('li');
+		        
+		        		if(Array.isArray(i)){
+		          			$newItem.append(foo(i));
+		        		} else {
+		          			$newItem.textContent = i ;
+		        		}
+
+		        		$list_item.append($newItem)
+		      		};
+		      		return $list_item;
+	    	 }
+	    
+			let $userList = generateList1(array);	
+			   console.dir($userList)
+			document.body.append($userList)
+
+	   
+
+	</script>
+	<script>
+				//Таблица
+		const table = function foo1(){
+			let $table = document.createElement('table');
+			
+			let $td = document.createElement('td');
+			let num = 0;
+
+				for (var i = 1; i <=10; i++) {
+					let $tr =  document.createElement('tr');
+		
+					for (var j = 1; j <=10; j++) {
+						let $td = document.createElement('td');
+					$td.textContent = ++num;
+					$tr.append($td);
+					}
+
+				$table.append($tr);
+				}
+			return $table;
+		}
+
+		console.log (table());
+		let $userTable = table();
+		document.body.append($userTable);
+
+	</script>
+</body>
+</html>
